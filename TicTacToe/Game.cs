@@ -8,15 +8,19 @@ namespace TicTacToe
 
         public void Play(char symbol, int x, int y)
         {
+            //if first move
             if(_lastSymbol == ' ')
             {
+                //if player is X
                 if(symbol == 'O')
                 {
                     throw new Exception("Invalid first player");
                 }
             } 
+            //if not first move
             else
             {
+                //repeated player
                 if (symbol == _lastSymbol)
                 {
                     throw new Exception("Invalid next player");
@@ -24,8 +28,6 @@ namespace TicTacToe
             }
 
             _lastSymbol = symbol;
- 
-            
         }
     }
 }
