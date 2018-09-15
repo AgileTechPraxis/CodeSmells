@@ -4,10 +4,84 @@ namespace TicTacToe
 {
     public class Game
     {
+        private char _lastSymbol = ' ';
+
         public void Play(char symbol, int x, int y)
         {
-            throw new Exception("Invalid player");
+            if(_lastSymbol == ' ')
+            {
+                if(symbol == 'O')
+                {
+                    throw new Exception("Invalid first player");
+                }
+            } 
+            else
+            {
+                if (symbol == _lastSymbol)
+                {
+                    throw new Exception("Invalid next player");
+                }
+            }
+
+            _lastSymbol = symbol;
+ 
+            
         }
     }
-    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
