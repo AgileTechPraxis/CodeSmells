@@ -21,12 +21,24 @@ namespace TicTacToeTests
         public void NotAllowPlayerXToPlayTwiceInARow()
         {
             var game =new Game();
-
             game.Play('X', 0, 0);
+            
             Action wrongPlay = () => game.Play('X', 1, 0);
 
             var exception = Assert.Throws<Exception>(wrongPlay);
             Assert.Equal("Invalid next player", exception.Message);
+        }
+
+        [Fact]
+        public void NotAllowPlayerToPlayInLastPlayedPosition()
+        {
+            var game =new Game();
+            game.Play('X', 0, 0);
+
+            Action wrongPlay = () => game.Play('O', 0, 0);
+
+            var exception = Assert.Throws<Exception>(wrongPlay);
+            Assert.Equal("Invalid position", exception.Message);
         }
     }
 }
