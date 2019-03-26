@@ -1,6 +1,6 @@
 # Code Smells
 
-## Smelly Tic Tac Toe Kata
+**Smelly Tic Tac Toe Kata**
 
 We created a very smelly implementation of TicTacToe. There are quite a few code smells in the implementation: 
 
