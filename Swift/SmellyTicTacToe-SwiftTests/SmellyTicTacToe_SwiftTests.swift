@@ -1,7 +1,7 @@
 
 import XCTest
 @testable import SmellyTicTacToe_Swift
-/*
+
 class SmellyTicTacToe_SwiftTests: XCTestCase {
     var game : Game!
     
@@ -65,7 +65,7 @@ class SmellyTicTacToe_SwiftTests: XCTestCase {
             try game.Play(symbol:"O", x:1, y:0)
             try game.Play(symbol:"X", x:0, y:1)
             try game.Play(symbol:"O", x:1, y:1)
-            try game.Play(symbol:"X", x:1, y:2)
+            try game.Play(symbol:"X", x:0, y:2)
         }
         catch{}
         
@@ -162,4 +162,3 @@ class SmellyTicTacToe_SwiftTests: XCTestCase {
         XCTAssertEqual(winner, "O")
     }
 }
-*/
