@@ -98,8 +98,7 @@ class Board
     {
         var tile : Tile = Tile( X : x, Y : y, Symbol : symbol)
 
-        var tile1 = _plays.filter { $0.X == x && $0.Y == y}.first!
-        tile1.Symbol = symbol;
+        _plays = _plays.map{ return $0.X == x && $0.Y == y ? Tile(X : $0.X, Y : $0.Y, Symbol : symbol) : $0 }
     }
 }
 
