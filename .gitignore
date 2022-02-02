@@ -37,5 +37,7 @@ TypeScript/node_modules/
 TypeScript/dist/
 TypeScript/package-lock.json
 
+ruby/Gemfile.lock
+
 */.idea/*
 python/venv
