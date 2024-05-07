@@ -14,13 +14,12 @@ public class Board {
         }
     }
 
-    public Tile tileAt(int x, int y) {
-        for (Tile t : plays) {
-            if (t.getX() == x && t.getY() == y) {
-                return t;
-            }
-        }
-        return null;
+    public Symbol getSymbolAt(int x, int y) {
+        return this.tileAt(x, y).getSymbol();
+    }
+
+    public void setSymbolAt(int x, int y, Symbol symbol) {
+        this.tileAt(x, y).setSymbol(symbol);
     }
 
     public String print() {
@@ -28,10 +27,19 @@ public class Board {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 Tile currentTile = this.tileAt(i, j);
-                sb.append(Optional.ofNullable(currentTile.getSymbol()).map(Symbol::getAsChar).orElse(' '));
+                sb.append(Optional.ofNullable(currentTile).map(Tile::getSymbol).map(Symbol::getAsChar).orElse(' '));
             }
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    private Tile tileAt(int x, int y) {
+        for (Tile t : plays) {
+            if (t.getX() == x && t.getY() == y) {
+                return t;
+            }
+        }
+        return null;
     }
 }

@@ -18,46 +18,46 @@ public class Game {
         }
 
         //if not first move but play on an already played tile
-        else if (board.tileAt(x, y).getSymbol() != null) {
+        else if (board.getSymbolAt(x, y) != null) {
             throw new IllegalArgumentException("Invalid position");
         }
 
         // update game state
         lastSymbol = symbol;
-        board.tileAt(x, y).setSymbol(symbol);
+        board.setSymbolAt(x, y, symbol);
     }
 
     public Optional<Symbol> computeWinner() {
         //if the positions in first row are taken
-        if (board.tileAt(0, 0).getSymbol() != null &&
-            board.tileAt(0, 1).getSymbol() != null &&
-            board.tileAt(0, 2).getSymbol() != null) {
+        if (board.getSymbolAt(0, 0) != null &&
+            board.getSymbolAt(0, 1) != null &&
+            board.getSymbolAt(0, 2) != null) {
             //if first row is full with same symbol
-            if (board.tileAt(0, 0).getSymbol().equals(board.tileAt(0, 1).getSymbol()) &&
-                board.tileAt(0, 2).getSymbol().equals(board.tileAt(0, 1).getSymbol())) {
-                return Optional.ofNullable(board.tileAt(0, 0).getSymbol());
+            if (board.getSymbolAt(0, 0).equals(board.getSymbolAt(0, 1)) &&
+                board.getSymbolAt(0, 2).equals(board.getSymbolAt(0, 1))) {
+                return Optional.ofNullable(board.getSymbolAt(0, 0));
             }
         }
 
         //if the positions in first row are taken
-        if (board.tileAt(1, 0).getSymbol() != null &&
-            board.tileAt(1, 1).getSymbol() != null &&
-            board.tileAt(1, 2).getSymbol() != null) {
+        if (board.getSymbolAt(1, 0) != null &&
+            board.getSymbolAt(1, 1) != null &&
+            board.getSymbolAt(1, 2) != null) {
             //if middle row is full with same symbol
-            if (board.tileAt(1, 0).getSymbol().equals(board.tileAt(1, 1).getSymbol()) &&
-                board.tileAt(1, 2).getSymbol().equals(board.tileAt(1, 1).getSymbol())) {
-                return Optional.ofNullable(board.tileAt(1, 0).getSymbol());
+            if (board.getSymbolAt(1, 0).equals(board.getSymbolAt(1, 1)) &&
+                board.getSymbolAt(1, 2).equals(board.getSymbolAt(1, 1))) {
+                return Optional.ofNullable(board.getSymbolAt(1, 0));
             }
         }
 
         //if the positions in first row are taken
-        if (board.tileAt(2, 0).getSymbol() != null &&
-            board.tileAt(2, 1).getSymbol() != null &&
-            board.tileAt(2, 2).getSymbol() != null) {
+        if (board.getSymbolAt(2, 0) != null &&
+            board.getSymbolAt(2, 1) != null &&
+            board.getSymbolAt(2, 2) != null) {
             //if middle row is full with same symbol
-            if (board.tileAt(2, 0).getSymbol().equals(board.tileAt(2, 1).getSymbol()) &&
-                board.tileAt(2, 2).getSymbol().equals(board.tileAt(2, 1).getSymbol())) {
-                return Optional.ofNullable(board.tileAt(2, 0).getSymbol());
+            if (board.getSymbolAt(2, 0).equals(board.getSymbolAt(2, 1)) &&
+                board.getSymbolAt(2, 2).equals(board.getSymbolAt(2, 1))) {
+                return Optional.ofNullable(board.getSymbolAt(2, 0));
             }
         }
 
