@@ -25,13 +25,4 @@ public class Board {
         }
         return null;
     }
-
-    public void addTileAt(Symbol symbol, int x, int y) {
-        Tile newTile = new Tile();
-        newTile.setX(x);
-        newTile.setY(y);
-        newTile.setSymbol(Optional.of(symbol));
-
-        tileAt(x, y).setSymbol(Optional.of(symbol));
-    }
 }

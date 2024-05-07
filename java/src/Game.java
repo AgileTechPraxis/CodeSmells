@@ -24,7 +24,7 @@ public class Game {
 
         // update game state
         lastSymbol = symbol;
-        board.addTileAt(symbol, x, y);
+        board.tileAt(x, y).setSymbol(Optional.of(symbol));
     }
 
     public Optional<Symbol> computeWinner() {
