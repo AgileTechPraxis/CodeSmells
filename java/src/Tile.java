@@ -8,5 +8,5 @@ import java.util.Optional;
 public class Tile {
     private int x;
     private int y;
-    private Optional<Character> symbol;
+    private Optional<Symbol> symbol;
 }

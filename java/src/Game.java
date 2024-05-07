@@ -1,21 +1,22 @@
 import java.util.Optional;
 
 public class Game {
-    private Character lastSymbol = null;
+    private Symbol lastSymbol = null;
     private final Board board = new Board();
 
-    public void play(char symbol, int x, int y) throws Exception {
+    public void play(char rawSymbol, int x, int y) throws Exception {
+        Symbol symbol = Symbol.fromChar(rawSymbol);
+        
         //if first move
-        if (lastSymbol == null) {
-            //if player is X
-            if (symbol == 'O') {
-                throw new Exception("Invalid first player");
-            }
+        if (lastSymbol == null && symbol == Symbol.O) {
+            throw new Exception("Invalid first player");
         }
+
         //if not first move but player repeated
-        else if (lastSymbol.equals(symbol)) {
+        else if (symbol.equals(lastSymbol)) {
             throw new Exception("Invalid next player");
         }
+
         //if not first move but play on an already played tile
         else if (board.tileAt(x, y).getSymbol().isPresent()) {
             throw new Exception("Invalid position");
@@ -26,7 +27,7 @@ public class Game {
         board.addTileAt(symbol, x, y);
     }
 
-    public Optional<Character> computeWinner() {
+    public Optional<Symbol> computeWinner() {
         //if the positions in first row are taken
         if (board.tileAt(0, 0).getSymbol().isPresent() &&
             board.tileAt(0, 1).getSymbol().isPresent() &&

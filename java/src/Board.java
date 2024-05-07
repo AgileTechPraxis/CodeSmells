@@ -26,7 +26,7 @@ public class Board {
         return null;
     }
 
-    public void addTileAt(char symbol, int x, int y) {
+    public void addTileAt(Symbol symbol, int x, int y) {
         Tile newTile = new Tile();
         newTile.setX(x);
         newTile.setY(y);
