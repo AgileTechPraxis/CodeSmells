@@ -8,9 +8,9 @@ public class Board {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 Tile tile = new Tile();
-                tile.x = i;
-                tile.y = j;
-                tile.symbol = ' ';
+                tile.setX(i);
+                tile.setY(j);
+                tile.setSymbol(' ');
                 plays.add(tile);
             }
         }
@@ -18,7 +18,7 @@ public class Board {
 
     public Tile TileAt(int x, int y) {
         for (Tile t : plays) {
-            if (t.x == x && t.y == y) {
+            if (t.getX() == x && t.getY() == y) {
                 return t;
             }
         }
@@ -27,10 +27,10 @@ public class Board {
 
     public void AddTileAt(char symbol, int x, int y) {
         Tile newTile = new Tile();
-        newTile.x = x;
-        newTile.y = y;
-        newTile.symbol = symbol;
+        newTile.setX(x);
+        newTile.setY(y);
+        newTile.setSymbol(symbol);
 
-        TileAt(x, y).symbol = symbol;
+        TileAt(x, y).setSymbol(symbol);
     }
 }

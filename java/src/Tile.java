@@ -1,5 +1,10 @@
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Tile {
-    public int x;
-    public int y;
-    public char symbol;
+    private int x;
+    private int y;
+    private char symbol;
 }
