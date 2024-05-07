@@ -1,6 +1,6 @@
 public class Game {
     private char lastSymbol = ' ';
-    private Board board = new Board();
+    private final Board board = new Board();
 
     public void Play(char symbol, int x, int y) throws Exception {
         //if first move

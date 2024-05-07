@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<Tile> plays = new ArrayList<>();
+    private final List<Tile> plays = new ArrayList<>();
 
     public Board() {
         for (int i = 0; i < 3; i++) {
