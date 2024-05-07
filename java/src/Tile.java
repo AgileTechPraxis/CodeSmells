@@ -1,10 +1,12 @@
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Optional;
+
 @Getter
 @Setter
 public class Tile {
     private int x;
     private int y;
-    private char symbol;
+    private Optional<Character> symbol;
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Board {
     private final List<Tile> plays = new ArrayList<>();
@@ -10,7 +11,7 @@ public class Board {
                 Tile tile = new Tile();
                 tile.setX(i);
                 tile.setY(j);
-                tile.setSymbol(' ');
+                tile.setSymbol(Optional.empty());
                 plays.add(tile);
             }
         }
@@ -29,8 +30,8 @@ public class Board {
         Tile newTile = new Tile();
         newTile.setX(x);
         newTile.setY(y);
-        newTile.setSymbol(symbol);
+        newTile.setSymbol(Optional.of(symbol));
 
-        tileAt(x, y).setSymbol(symbol);
+        tileAt(x, y).setSymbol(Optional.of(symbol));
     }
 }
