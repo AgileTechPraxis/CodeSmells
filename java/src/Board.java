@@ -15,11 +15,11 @@ public class Board {
     }
 
     public Symbol getSymbolAt(int x, int y) {
-        return this.tileAt(x, y).getSymbol();
+        return Optional.ofNullable(this.tileAt(x, y)).map(Tile::getSymbol).orElse(null);
     }
 
     public void setSymbolAt(int x, int y, Symbol symbol) {
-        this.tileAt(x, y).setSymbol(symbol);
+        Optional.ofNullable(this.tileAt(x, y)).ifPresent(t -> t.setSymbol(symbol));
     }
 
     public String print() {
