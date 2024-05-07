@@ -12,17 +12,17 @@ public class GameTest {
     private Game game;
 
     @BeforeEach
-    public void InitializeGame() {
+    void InitializeGame() {
         game = new Game();
     }
 
     @Test
-    public void NotAllowPlayerOToPlayFirst() {
+    void NotAllowPlayerOToPlayFirst() {
         assertThrows(Exception.class, () -> game.play('O', 0, 0));
     }
 
     @Test
-    public void NotAllowPlayerXToPlayTwiceInARow() {
+    void NotAllowPlayerXToPlayTwiceInARow() {
         assertThrows(Exception.class, () -> {
             game.play('X', 0, 0);
             game.play('X', 1, 0);
@@ -30,7 +30,7 @@ public class GameTest {
     }
 
     @Test
-    public void NotAllowPlayerToPlayInLastPlayedPosition() {
+    void NotAllowPlayerToPlayInLastPlayedPosition() {
         assertThrows(Exception.class, () -> {
             game.play('X', 0, 0);
             game.play('O', 0, 0);
@@ -38,7 +38,7 @@ public class GameTest {
     }
 
     @Test
-    public void NotAllowPlayerToPlayInAnyPlayedPosition() {
+    void NotAllowPlayerToPlayInAnyPlayedPosition() {
         assertThrows(Exception.class, () -> {
             game.play('X', 0, 0);
             game.play('O', 1, 0);
@@ -47,7 +47,7 @@ public class GameTest {
     }
 
     @Test
-    public void DeclareNoWinnerWithUnfinishedGrid() throws Exception {
+    void DeclareNoWinnerWithUnfinishedGrid() throws Exception {
         game.play('X', 0, 0);
         game.play('O', 1, 0);
         game.play('X', 0, 1);
@@ -59,7 +59,7 @@ public class GameTest {
     }
 
     @Test
-    public void DeclareNoWinnerWithTiedGrid() throws Exception {
+    void DeclareNoWinnerWithTiedGrid() throws Exception {
         game.play('X', 1, 1);
         game.play('O', 0, 0);
         game.play('X', 0, 2);
@@ -76,7 +76,7 @@ public class GameTest {
     }
 
     @Test
-    public void DeclarePlayerXAsAWinnerIfThreeInTopRow() throws Exception {
+    void DeclarePlayerXAsAWinnerIfThreeInTopRow() throws Exception {
         game.play('X', 0, 0);
         game.play('O', 1, 0);
         game.play('X', 0, 1);
@@ -90,7 +90,7 @@ public class GameTest {
     }
 
     @Test
-    public void DeclarePlayerOAsAWinnerIfThreeInTopRow() throws Exception {
+    void DeclarePlayerOAsAWinnerIfThreeInTopRow() throws Exception {
         game.play('X', 2, 2);
         game.play('O', 0, 0);
         game.play('X', 1, 0);
@@ -105,7 +105,7 @@ public class GameTest {
     }
 
     @Test
-    public void DeclarePlayerXAsAWinnerIfThreeInMiddleRow() throws Exception {
+    void DeclarePlayerXAsAWinnerIfThreeInMiddleRow() throws Exception {
         game.play('X', 1, 0);
         game.play('O', 0, 0);
         game.play('X', 1, 1);
@@ -119,7 +119,7 @@ public class GameTest {
     }
 
     @Test
-    public void DeclarePlayerOAsAWinnerIfThreeInMiddleRow() throws Exception {
+    void DeclarePlayerOAsAWinnerIfThreeInMiddleRow() throws Exception {
         game.play('X', 0, 0);
         game.play('O', 1, 0);
         game.play('X', 2, 0);
@@ -134,7 +134,7 @@ public class GameTest {
     }
 
     @Test
-    public void DeclarePlayerXAsAWinnerIfThreeInBottomRow() throws Exception {
+    void DeclarePlayerXAsAWinnerIfThreeInBottomRow() throws Exception {
         game.play('X', 2, 0);
         game.play('O', 0, 0);
         game.play('X', 2, 1);
@@ -148,7 +148,7 @@ public class GameTest {
     }
 
     @Test
-    public void DeclarePlayerOAsAWinnerIfThreeInBottomRow() throws Exception {
+    void DeclarePlayerOAsAWinnerIfThreeInBottomRow() throws Exception {
         game.play('X', 0, 0);
         game.play('O', 2, 0);
         game.play('X', 1, 0);
@@ -163,14 +163,14 @@ public class GameTest {
     }
 
     @Test
-    public void NotAllowPlayingIllegalSymbol() throws Exception {
+    void NotAllowPlayingIllegalSymbol() throws Exception {
         game.play('X', 0, 0);
         game.play('O', 2, 0);
         assertThrows(IllegalArgumentException.class, () -> game.play('Y', 1, 0));
     }
 
     @Test
-    public void AllowPlayingLowercaseVariants() throws Exception {
+    void AllowPlayingLowercaseVariants() throws Exception {
         game.play('X', 0, 0);
         game.play('O', 2, 0);
         assertDoesNotThrow(() -> game.play('x', 1, 0));
