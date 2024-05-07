@@ -1,8 +1,10 @@
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Arrays;
 
 @AllArgsConstructor
+@Getter
 public enum Symbol {
     X('X'),
     O('O');

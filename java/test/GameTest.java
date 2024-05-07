@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -175,5 +176,31 @@ public class GameTest {
         game.play('O', 2, 0);
         assertDoesNotThrow(() -> game.play('x', 1, 0));
         assertDoesNotThrow(() -> game.play('o', 2, 1));
+    }
+    
+    @Test
+    void DeclarePlayerXAsAWinnerIfThreeInLeftColumn() throws Exception {
+        game.play('X', 0, 0);
+        game.play('O', 1, 0);
+        game.play('X', 0, 1);
+        game.play('O', 1, 1);
+        game.play('X', 0, 2);
+
+        assertTrue(game.computeWinner().isPresent());
+        assertEquals(Symbol.X, game.computeWinner().get());
+    }
+
+    @Test
+    @Disabled("Not implemented")
+    void DeclarePlayerXAsAWinnerIfThreeDiagonallyRightDown() throws Exception {
+        game.play('X', 0, 0);
+        game.play('O', 1, 0);
+        game.play('X', 1, 1);
+        game.play('O', 2, 1);
+        game.play('X', 2, 2);
+
+        System.out.println(game.printBoard());
+        assertTrue(game.computeWinner().isPresent());
+        assertEquals(Symbol.X, game.computeWinner().get());
     }
 }

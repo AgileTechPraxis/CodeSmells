@@ -63,4 +63,8 @@ public class Game {
 
         return Optional.empty();
     }
+    
+    public String printBoard() {
+        return board.print();
+    }
 }
