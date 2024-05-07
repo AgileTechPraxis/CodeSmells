@@ -2,7 +2,7 @@ public class Game {
     private char lastSymbol = ' ';
     private final Board board = new Board();
 
-    public void Play(char symbol, int x, int y) throws Exception {
+    public void play(char symbol, int x, int y) throws Exception {
         //if first move
         if (lastSymbol == ' ') {
             //if player is X
@@ -15,51 +15,51 @@ public class Game {
             throw new Exception("Invalid next player");
         }
         //if not first move but play on an already played tile
-        else if (board.TileAt(x, y).getSymbol() != ' ') {
+        else if (board.tileAt(x, y).getSymbol() != ' ') {
             throw new Exception("Invalid position");
         }
 
         // update game state
         lastSymbol = symbol;
-        board.AddTileAt(symbol, x, y);
+        board.addTileAt(symbol, x, y);
     }
 
-    public char Winner() {
+    public char winner() {
         //if the positions in first row are taken
-        if (board.TileAt(0, 0).getSymbol() != ' ' &&
-            board.TileAt(0, 1).getSymbol() != ' ' &&
-            board.TileAt(0, 2).getSymbol() != ' ') {
+        if (board.tileAt(0, 0).getSymbol() != ' ' &&
+            board.tileAt(0, 1).getSymbol() != ' ' &&
+            board.tileAt(0, 2).getSymbol() != ' ') {
             //if first row is full with same symbol
-            if (board.TileAt(0, 0).getSymbol() ==
-                board.TileAt(0, 1).getSymbol() &&
-                board.TileAt(0, 2).getSymbol() == board.TileAt(0, 1).getSymbol()) {
-                return board.TileAt(0, 0).getSymbol();
+            if (board.tileAt(0, 0).getSymbol() ==
+                board.tileAt(0, 1).getSymbol() &&
+                board.tileAt(0, 2).getSymbol() == board.tileAt(0, 1).getSymbol()) {
+                return board.tileAt(0, 0).getSymbol();
             }
         }
 
         //if the positions in first row are taken
-        if (board.TileAt(1, 0).getSymbol() != ' ' &&
-            board.TileAt(1, 1).getSymbol() != ' ' &&
-            board.TileAt(1, 2).getSymbol() != ' ') {
+        if (board.tileAt(1, 0).getSymbol() != ' ' &&
+            board.tileAt(1, 1).getSymbol() != ' ' &&
+            board.tileAt(1, 2).getSymbol() != ' ') {
             //if middle row is full with same symbol
-            if (board.TileAt(1, 0).getSymbol() ==
-                board.TileAt(1, 1).getSymbol() &&
-                board.TileAt(1, 2).getSymbol() ==
-                board.TileAt(1, 1).getSymbol()) {
-                return board.TileAt(1, 0).getSymbol();
+            if (board.tileAt(1, 0).getSymbol() ==
+                board.tileAt(1, 1).getSymbol() &&
+                board.tileAt(1, 2).getSymbol() ==
+                board.tileAt(1, 1).getSymbol()) {
+                return board.tileAt(1, 0).getSymbol();
             }
         }
 
         //if the positions in first row are taken
-        if (board.TileAt(2, 0).getSymbol() != ' ' &&
-            board.TileAt(2, 1).getSymbol() != ' ' &&
-            board.TileAt(2, 2).getSymbol() != ' ') {
+        if (board.tileAt(2, 0).getSymbol() != ' ' &&
+            board.tileAt(2, 1).getSymbol() != ' ' &&
+            board.tileAt(2, 2).getSymbol() != ' ') {
             //if middle row is full with same symbol
-            if (board.TileAt(2, 0).getSymbol() ==
-                board.TileAt(2, 1).getSymbol() &&
-                board.TileAt(2, 2).getSymbol() ==
-                board.TileAt(2, 1).getSymbol()) {
-                return board.TileAt(2, 0).getSymbol();
+            if (board.tileAt(2, 0).getSymbol() ==
+                board.tileAt(2, 1).getSymbol() &&
+                board.tileAt(2, 2).getSymbol() ==
+                board.tileAt(2, 1).getSymbol()) {
+                return board.tileAt(2, 0).getSymbol();
             }
         }
 
