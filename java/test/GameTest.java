@@ -1,8 +1,11 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameTest {
     private Game game;
@@ -43,6 +46,35 @@ public class GameTest {
     }
 
     @Test
+    public void DeclareNoWinnerWithUnfinishedGrid() throws Exception {
+        game.play('X', 0, 0);
+        game.play('O', 1, 0);
+        game.play('X', 0, 1);
+        game.play('O', 1, 1);
+
+        Optional<Character> winner = game.computeWinner();
+
+        assertTrue(winner.isEmpty());
+    }
+
+    @Test
+    public void DeclareNoWinnerWithTiedGrid() throws Exception {
+        game.play('X', 1, 1);
+        game.play('O', 0, 0);
+        game.play('X', 0, 2);
+        game.play('O', 2, 0);
+        game.play('X', 1, 0);
+        game.play('0', 1, 2);
+        game.play('X', 2, 1);
+        game.play('O', 0, 1);
+        game.play('X', 2, 2);
+
+        Optional<Character> winner = game.computeWinner();
+
+        assertTrue(winner.isEmpty());
+    }
+
+    @Test
     public void DeclarePlayerXAsAWinnerIfThreeInTopRow() throws Exception {
         game.play('X', 0, 0);
         game.play('O', 1, 0);
@@ -50,9 +82,10 @@ public class GameTest {
         game.play('O', 1, 1);
         game.play('X', 0, 2);
 
-        char winner = game.winner();
+        Optional<Character> winner = game.computeWinner();
 
-        assertEquals('X', winner);
+        assertTrue(winner.isPresent());
+        assertEquals('X', winner.get());
     }
 
     @Test
@@ -64,9 +97,10 @@ public class GameTest {
         game.play('X', 1, 1);
         game.play('O', 0, 2);
 
-        char winner = game.winner();
+        Optional<Character> winner = game.computeWinner();
 
-        assertEquals('O', winner);
+        assertTrue(winner.isPresent());
+        assertEquals('O', winner.get());
     }
 
     @Test
@@ -77,9 +111,10 @@ public class GameTest {
         game.play('O', 0, 1);
         game.play('X', 1, 2);
 
-        char winner = game.winner();
+        Optional<Character> winner = game.computeWinner();
 
-        assertEquals('X', winner);
+        assertTrue(winner.isPresent());
+        assertEquals('X', winner.get());
     }
 
     @Test
@@ -91,9 +126,10 @@ public class GameTest {
         game.play('X', 2, 1);
         game.play('O', 1, 2);
 
-        char winner = game.winner();
+        Optional<Character> winner = game.computeWinner();
 
-        assertEquals('O', winner);
+        assertTrue(winner.isPresent());
+        assertEquals('O', winner.get());
     }
 
     @Test
@@ -104,9 +140,10 @@ public class GameTest {
         game.play('O', 0, 1);
         game.play('X', 2, 2);
 
-        char winner = game.winner();
+        Optional<Character> winner = game.computeWinner();
 
-        assertEquals('X', winner);
+        assertTrue(winner.isPresent());
+        assertEquals('X', winner.get());
     }
 
     @Test
@@ -118,8 +155,9 @@ public class GameTest {
         game.play('X', 1, 1);
         game.play('O', 2, 2);
 
-        char winner = game.winner();
+        Optional<Character> winner = game.computeWinner();
 
-        assertEquals('O', winner);
+        assertTrue(winner.isPresent());
+        assertEquals('O', winner.get());
     }
 }

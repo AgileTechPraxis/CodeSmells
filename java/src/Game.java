@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public class Game {
     private char lastSymbol = ' ';
     private final Board board = new Board();
@@ -24,7 +26,7 @@ public class Game {
         board.addTileAt(symbol, x, y);
     }
 
-    public char winner() {
+    public Optional<Character> computeWinner() {
         //if the positions in first row are taken
         if (board.tileAt(0, 0).getSymbol() != ' ' &&
             board.tileAt(0, 1).getSymbol() != ' ' &&
@@ -33,7 +35,7 @@ public class Game {
             if (board.tileAt(0, 0).getSymbol() ==
                 board.tileAt(0, 1).getSymbol() &&
                 board.tileAt(0, 2).getSymbol() == board.tileAt(0, 1).getSymbol()) {
-                return board.tileAt(0, 0).getSymbol();
+                return Optional.of(board.tileAt(0, 0).getSymbol());
             }
         }
 
@@ -46,7 +48,7 @@ public class Game {
                 board.tileAt(1, 1).getSymbol() &&
                 board.tileAt(1, 2).getSymbol() ==
                 board.tileAt(1, 1).getSymbol()) {
-                return board.tileAt(1, 0).getSymbol();
+                return Optional.of(board.tileAt(1, 0).getSymbol());
             }
         }
 
@@ -59,10 +61,10 @@ public class Game {
                 board.tileAt(2, 1).getSymbol() &&
                 board.tileAt(2, 2).getSymbol() ==
                 board.tileAt(2, 1).getSymbol()) {
-                return board.tileAt(2, 0).getSymbol();
+                return Optional.of(board.tileAt(2, 0).getSymbol());
             }
         }
 
-        return ' ';
+        return Optional.empty();
     }
 }
