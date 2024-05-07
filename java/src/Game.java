@@ -4,22 +4,22 @@ public class Game {
     private Symbol lastSymbol = null;
     private final Board board = new Board();
 
-    public void play(char rawSymbol, int x, int y) throws Exception {
+    public void play(char rawSymbol, int x, int y) {
         Symbol symbol = Symbol.fromChar(rawSymbol);
 
         //if first move
         if (lastSymbol == null && symbol == Symbol.O) {
-            throw new Exception("Invalid first player");
+            throw new IllegalArgumentException("Invalid first player");
         }
 
         //if not first move but player repeated
         else if (symbol.equals(lastSymbol)) {
-            throw new Exception("Invalid next player");
+            throw new IllegalArgumentException("Invalid next player");
         }
 
         //if not first move but play on an already played tile
         else if (board.tileAt(x, y).getSymbol() != null) {
-            throw new Exception("Invalid position");
+            throw new IllegalArgumentException("Invalid position");
         }
 
         // update game state
