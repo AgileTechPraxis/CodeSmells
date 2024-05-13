@@ -29,6 +29,7 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+target
 
 # Visual Studio 2015
 .vs/
@@ -39,5 +40,5 @@ TypeScript/package-lock.json
 
 ruby/Gemfile.lock
 
-*/.idea/*
+**/.idea/*
 python/venv
