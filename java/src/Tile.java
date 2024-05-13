@@ -1,7 +1,12 @@
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-public class Tile
-{
-    public int X;
-    public int Y;
-    public char Symbol;
+@Getter
+@RequiredArgsConstructor
+public class Tile {
+    private final int x;
+    private final int y;
+    @Setter
+    private Symbol symbol;
 }

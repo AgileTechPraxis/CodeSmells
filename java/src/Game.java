@@ -1,69 +1,70 @@
-public class Game {
-    private char _lastSymbol = ' ';
-    private Board _board = new Board();
+import java.util.Optional;
 
-    public void Play(char symbol, int x, int y) throws Exception {
+public class Game {
+    private Symbol lastSymbol = null;
+    private final Board board = new Board();
+
+    public void play(char rawSymbol, int x, int y) {
+        Symbol symbol = Symbol.fromChar(rawSymbol);
+
         //if first move
-        if (_lastSymbol == ' ') {
-            //if player is X
-            if (symbol == 'O') {
-                throw new Exception("Invalid first player");
-            }
+        if (lastSymbol == null && symbol == Symbol.O) {
+            throw new IllegalArgumentException("Invalid first player");
         }
+
         //if not first move but player repeated
-        else if (symbol == _lastSymbol) {
-            throw new Exception("Invalid next player");
+        else if (symbol.equals(lastSymbol)) {
+            throw new IllegalArgumentException("Invalid next player");
         }
+
         //if not first move but play on an already played tile
-        else if (_board.TileAt(x, y).Symbol != ' ') {
-            throw new Exception("Invalid position");
+        else if (board.getSymbolAt(x, y) != null) {
+            throw new IllegalArgumentException("Invalid position");
         }
 
         // update game state
-        _lastSymbol = symbol;
-        _board.AddTileAt(symbol, x, y);
+        lastSymbol = symbol;
+        board.setSymbolAt(x, y, symbol);
     }
 
-    public char Winner() {
+    public Optional<Symbol> computeWinner() {
         //if the positions in first row are taken
-        if (_board.TileAt(0, 0).Symbol != ' ' &&
-                _board.TileAt(0, 1).Symbol != ' ' &&
-                _board.TileAt(0, 2).Symbol != ' ') {
+        if (board.getSymbolAt(0, 0) != null &&
+            board.getSymbolAt(0, 1) != null &&
+            board.getSymbolAt(0, 2) != null) {
             //if first row is full with same symbol
-            if (_board.TileAt(0, 0).Symbol ==
-                    _board.TileAt(0, 1).Symbol &&
-                    _board.TileAt(0, 2).Symbol == _board.TileAt(0, 1).Symbol) {
-                return _board.TileAt(0, 0).Symbol;
+            if (board.getSymbolAt(0, 0).equals(board.getSymbolAt(0, 1)) &&
+                board.getSymbolAt(0, 2).equals(board.getSymbolAt(0, 1))) {
+                return Optional.ofNullable(board.getSymbolAt(0, 0));
             }
         }
 
         //if the positions in first row are taken
-        if (_board.TileAt(1, 0).Symbol != ' ' &&
-                _board.TileAt(1, 1).Symbol != ' ' &&
-                _board.TileAt(1, 2).Symbol != ' ') {
+        if (board.getSymbolAt(1, 0) != null &&
+            board.getSymbolAt(1, 1) != null &&
+            board.getSymbolAt(1, 2) != null) {
             //if middle row is full with same symbol
-            if (_board.TileAt(1, 0).Symbol ==
-                    _board.TileAt(1, 1).Symbol &&
-                    _board.TileAt(1, 2).Symbol ==
-                            _board.TileAt(1, 1).Symbol) {
-                return _board.TileAt(1, 0).Symbol;
+            if (board.getSymbolAt(1, 0).equals(board.getSymbolAt(1, 1)) &&
+                board.getSymbolAt(1, 2).equals(board.getSymbolAt(1, 1))) {
+                return Optional.ofNullable(board.getSymbolAt(1, 0));
             }
         }
 
         //if the positions in first row are taken
-        if (_board.TileAt(2, 0).Symbol != ' ' &&
-                _board.TileAt(2, 1).Symbol != ' ' &&
-                _board.TileAt(2, 2).Symbol != ' ') {
+        if (board.getSymbolAt(2, 0) != null &&
+            board.getSymbolAt(2, 1) != null &&
+            board.getSymbolAt(2, 2) != null) {
             //if middle row is full with same symbol
-            if (_board.TileAt(2, 0).Symbol ==
-                    _board.TileAt(2, 1).Symbol &&
-                    _board.TileAt(2, 2).Symbol ==
-                            _board.TileAt(2, 1).Symbol) {
-                return _board.TileAt(2, 0).Symbol;
+            if (board.getSymbolAt(2, 0).equals(board.getSymbolAt(2, 1)) &&
+                board.getSymbolAt(2, 2).equals(board.getSymbolAt(2, 1))) {
+                return Optional.ofNullable(board.getSymbolAt(2, 0));
             }
         }
 
-        return ' ';
+        return Optional.empty();
+    }
+    
+    public String printBoard() {
+        return board.print();
     }
 }
-
