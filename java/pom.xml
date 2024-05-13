@@ -10,12 +10,14 @@
     <name>CodeSmells</name>
 
     <properties>
+        <!-- change the number here to use other java versions, tested with 17 and 21 -->
         <java.version>21</java.version>
+        <!-- update to newer junit-5 versions if needed -->
+        <junit.version>5.10.2</junit.version>
+
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <junit.version>5.10.2</junit.version>
     </properties>
 
     <dependencyManagement>
