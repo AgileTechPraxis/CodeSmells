@@ -40,5 +40,6 @@ TypeScript/package-lock.json
 
 ruby/Gemfile.lock
 
+*.iml
 **/.idea/*
 python/venv
